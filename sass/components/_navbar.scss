@@ -1,0 +1,95 @@
+@use '../unique/root' as *;
+@use '../unique/mixin' as *;
+.navbar {
+	@include flexBox(space-between, center, row);
+	padding: 1rem 0;
+	.logo {
+		img {
+			width: 100px;
+		}
+	}
+	.menu_list {
+		@include flexBox(space-between, center, row, 1rem);
+		li {
+			border-right: 1px solid $light_grey_stroke;
+			padding-right: 1rem;
+			a {
+				color: $text_secondary;
+				font-size: $font_14;
+				transition: color 0.3s ease;
+
+				&:hover {
+					color: $brand_color;
+				}
+			}
+
+			&:last-child {
+				border: none;
+			}
+		}
+	}
+
+	.social_list {
+		@include flexBox(space-between, center, row, 1rem);
+		.instagram,
+		.facebook {
+			@include icons($text_secondary, $brand_color);
+		}
+		.input_search {
+			position: relative;
+			input {
+				border: 1px solid $light_grey_stroke;
+				padding: 0.5rem 1rem;
+				border-radius: 1rem;
+				font-size: $font_14;
+				color: $text_secondary;
+				outline: none;
+				transition: border-color 0.3s ease;
+				&:focus {
+					border-color: $brand_color;
+				}
+			}
+			i {
+				position: absolute;
+				right: 1rem;
+				top: 20%;
+				background-color: white;
+				@include icons($text_secondary, '', 20px);
+			}
+		}
+		.heart_icon,
+		.card_icon {
+			@include icons($brand_color);
+		}
+	}
+
+	.responsive_list {
+		@include flexBox(space-between, center, row, 1rem);
+		display: none;
+		i {
+			@include icons($brand_color);
+			border-radius: 50%;
+			border: 1px solid $light_grey_stroke;
+			padding: 0.5rem;
+		}
+	}
+	.menu {
+		display: none;
+		i {
+			@include icons($text_secondary);
+		}
+	}
+
+	@media only screen and (max-width: 568px) {
+		.responsive_list{
+			display: flex;
+		}
+		.menu {
+			display: block;
+		}
+		.menu_list,
+		.social_list {
+			display: none;
+		}
+	}
+}
